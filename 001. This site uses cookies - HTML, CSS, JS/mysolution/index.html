@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:800" rel="stylesheet">
+    <title>Coockies Site</title>
+</head>
+
+<style>
+    body {
+        background: lightblue;
+        font-family: 'Dosis', sans-serif;
+        color: rgba(0, 0, 0, 0.8);
+    }
+
+    img {
+        height: 150px;
+    }
+
+    button {
+        width: 50px;
+        height: 50px;
+        border: 2px solid rgba(0, 0, 0, 0.8);
+        border-radius: 50%;
+        font-family: 'Dosis', sans-serif;
+        font-size: 1.2em;
+        color: rgba(0, 0, 0, 0.8);
+        background-color: antiquewhite;
+        cursor: pointer;
+    }
+
+    #cookie-note {
+        position: absolute;
+        top: -350px;
+        width: 100%;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.16);
+        background-color: white;
+        border-radius: 5px;
+        transition: 0.8s ease-in-out;
+    }
+
+    .slide-in {
+        transform: translateY(350px);
+    }
+</style>
+
+<body>
+    <header id="cookie-note">
+        <div>
+            <h1>Don't be scared, we use cookies!</h1>
+            <button>OK!</button>
+        </div>
+        <img src="cookie-batman.png" alt="cookie batman">
+    </header>
+    
+    <script>
+        const btnClose = document.querySelector("button");
+        const cookieNote = document.getElementById("cookie-note");
+        const localCookie = localStorage.getItem("cookieAccepted");
+        
+        if (localCookie !== "true") {
+            setTimeout(()=>{
+            cookieNote.classList.add("slide-in");
+            }, 1000);
+        }
+
+        btnClose.addEventListener("click", ()=>{
+            console.log("clicked");
+            cookieNote.classList.remove("slide-in");
+            localStorage.setItem('cookieAccepted', 'true');
+        })
+    </script>
+</body>
+</html>
